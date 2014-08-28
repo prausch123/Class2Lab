@@ -14,11 +14,13 @@
     <body>
         <h1>Name Response</h1>
         <%
-            Object obj = request.getAttribute("name");
-            if(obj == null) {
+            Object name = request.getAttribute("name");
+            Object date = request.getAttribute("timeOfDay");
+            
+            if(name == null || date == null) {
                 out.println("Sorry, something went wrong");
             } else {
-                out.println(obj.toString());
+                out.println("Good " + date.toString() + " " + name.toString());
             }
         %>
     </body>

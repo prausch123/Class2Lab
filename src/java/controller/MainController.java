@@ -13,7 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.NameChanger;
+import model.WelcomeService;
 
 /**
  *
@@ -35,11 +35,13 @@ public class MainController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String name = request.getParameter("name");
-        NameChanger nc = new NameChanger();
+        WelcomeService wc = new WelcomeService();
         
-        String result = nc.processName(name);
+        String nameResult = wc.processName(name);
+        String dateResult = wc.returnDate();
 
         request.setAttribute("name",name);
+        request.setAttribute("timeOfDay", dateResult);
         
         RequestDispatcher view = request.getRequestDispatcher("/response.jsp");
         view.forward(request, response);
